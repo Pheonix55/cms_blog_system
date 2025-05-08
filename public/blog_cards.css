@@ -18,16 +18,19 @@ body {
 .blog_cards {
     display: grid;
     place-items: center;
-    height: 100vh;
+    height: auto;
+    padding-block: 5rem;
 }
 
 .container {
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
+
     justify-content: center;
     max-width: 1200px;
     margin-block: 2rem;
-    gap: 2rem;
+    column-gap: 2rem;
+    row-gap: 2rem;
+    grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
 }
 
 img {
@@ -45,10 +48,28 @@ img {
     border-radius: 1em;
     background: #ECE9E6;
     background: linear-gradient(to right, #FFFFFF, #ECE9E6);
+    position: relative;
 
 }
 
+.fav_c {
+    /* display: none; */
+    /* background-color: #cb2d3e; */
+    position: absolute;
+    bottom: 15px;
+    right: 15px;
+}
 
+.regular_11,
+.filled_11 {
+    color: red;
+}
+
+.like_counter {
+    position: absolute;
+    top: 18px;
+    font-size: 14px;
+}
 
 .card__body {
     padding: 1rem;

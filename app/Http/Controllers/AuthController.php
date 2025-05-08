@@ -23,6 +23,9 @@ class AuthController extends Controller
         ]);
 
         if (Auth::attempt(['username' => $request->username, 'password' => $request->password])) {
+            if (Auth::user()->type === 'admin') {
+                return redirect('admin/');
+            }
             return redirect('/');
         }
 
@@ -65,7 +68,8 @@ class AuthController extends Controller
         Auth::logout();
         return redirect('login');
     }
-    public function forgetPassword(){
+    public function forgetPassword()
+    {
         return view('forget_password');
     }
 }
