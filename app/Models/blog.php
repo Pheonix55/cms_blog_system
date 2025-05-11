@@ -25,9 +25,16 @@ class blog extends Model
         return $this->belongsTo(User::class);
     }
 
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
+
+
     public function getReadingTime(): string
     {
-        $wordCount = str_word_count(strip_tags($this->content));
+        $wordCount = str_word_count(strip_tags($this->description));
         $minutes = ceil($wordCount / 200);
         return "{$minutes} min read";
     }

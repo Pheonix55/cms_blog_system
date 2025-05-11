@@ -24,7 +24,7 @@ class AuthController extends Controller
 
         if (Auth::attempt(['username' => $request->username, 'password' => $request->password])) {
             if (Auth::user()->type === 'admin') {
-                return redirect('admin/');
+                return redirect()->route('admin.blog.index');
             }
             return redirect('/');
         }

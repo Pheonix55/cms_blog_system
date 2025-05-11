@@ -20,7 +20,42 @@
 
 
         <div class="container">
-            <div class="card blog_card_12">
+            @foreach ($blogs as $blog)
+                <div class="card blog_card_12">
+                    <div class="fav_c">
+                        <i class="fa-regular fa-heart " id="regular_11"></i>
+                        <div class="like_counter">
+                            23
+                        </div>
+                    </div>
+                    <div class="card__header">
+                        <img src="{{ asset('storage/' . $blog->featured_image) }}" alt="card__image" class="card__image"
+                            width="600">
+                    </div>
+                    <div class="card__body">
+                        <span class="tag tag-blue">{{ $blog->tags }}</span>
+                        <h4>{{ $blog->title }}</h4>
+                        <p>{{ $blog->description }}</p>
+                    </div>
+                    <div class="card__footer">
+                        <div class="user">
+                            <img src="https://i.pravatar.cc/40?img=1" alt="user__image" class="user__image">
+                            <div class="user__info">
+                                <h5>{{ @$blog->user->name }}</h5>
+                                <small>
+                                    @if ($blog->published_at == null)
+                                        ---
+                                    @else
+                                        {{ $blog->published_at }}
+                                    @endif
+                                </small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            @endforeach
+
+            {{-- <div class="card blog_card_12">
                 <div class="fav_c">
                     <i class="fa-regular fa-heart " id="regular_11"></i>
                     <div class="like_counter">
@@ -45,8 +80,8 @@
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="card">
+            </div> --}}
+            {{-- <div class="card">
                 <div class="card__header">
                     <img src="{{ asset('images/tech.jpeg') }}" alt="card__image" class="card__image" width="600">
                 </div>
@@ -105,7 +140,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> --}}
         </div>
     </div>
 

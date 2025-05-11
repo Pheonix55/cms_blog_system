@@ -7,24 +7,42 @@
 
             <div class="table">
                 <div class="table-header">
-                    <div class="header__item"><a id="name" class="filter__link" href="#">Name</a></div>
+                    <div class="header__item"><a id="no" class="filter__link" href="#">#</a></div>
+                    <div class="header__item"><a id="name" class="filter__link" href="#">Auther</a></div>
                     <div class="header__item"><a id="wins" class="filter__link filter__link--number"
                             href="#">title</a></div>
                     <div class="header__item"><a id="draws" class="filter__link filter__link--number"
                             href="#">slug</a></div>
                     <div class="header__item"><a id="losses" class="filter__link filter__link--number"
-                            href="#">user</a></div>
+                            href="#">tags</a></div>
                     <div class="header__item"><a id="total" class="filter__link filter__link--number"
                             href="#">category</a></div>
+                    <div class="header__item"><a id="rt" class="filter__link filter__link--number"
+                            href="#">Reading Time</a></div>
+                    <div class="header__item"><a id="view" class="filter__link filter__link--number"
+                            href="#">views</a></div>
+
+                    <div class="header__item"><a id="likes" class="filter__link filter__link--number"
+                            href="#">likes</a></div>
                 </div>
+                {{-- </div> --}}
+                {{-- </div> --}}
                 <div class="table-content">
-                    {{-- <div class="table-row">
-                        <div class="table-data">Tom</div>
-                        <div class="table-data">2</div>
-                        <div class="table-data">0</div>
-                        <div class="table-data">1</div>
-                        <div class="table-data">5</div>
-                    </div>
+                    @foreach ($blogs as $blog)
+                        <div class="table-row">
+                            <div class="table-data">{{ $blog->id }}</div>
+                            <div class="table-data">{{ @$blog->user->name }}</div>
+                            <div class="table-data">{{ $blog->title }}</div>
+                            <div class="table-data">{{ $blog->slug }}</div>
+                            <div class="table-data">{{ $blog->tags }}</div>
+                            <div class="table-data">{{ @$blog->category->name }}</div>
+                            <div class="table-data">{{ $blog->getReadingTime() }}</div>
+                            <div class="table-data">12</div>
+                            <div class="table-data">2</div>
+                        </div>
+                    @endforeach
+                    {{-- 
+                    
                     <div class="table-row">
                         <div class="table-data">Dick</div>
                         <div class="table-data">1</div>
@@ -48,11 +66,15 @@
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script>
         var properties = [
+            'no',
             'name',
             'wins',
             'draws',
             'losses',
             'total',
+            'rt',
+            'view',
+            'likes'
         ];
 
         $.each(properties, function(i, val) {

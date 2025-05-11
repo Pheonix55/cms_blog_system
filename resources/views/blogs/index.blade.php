@@ -91,7 +91,7 @@
                                     @if ($post->published_at == null)
                                         ---
                                     @else
-                                        {{ $post->published_at->format('M d, Y') }}
+                                        {{ $post->published_at }}
                                     @endif
                                 </div>
                                 <div>

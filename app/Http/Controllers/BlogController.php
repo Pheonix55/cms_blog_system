@@ -6,6 +6,8 @@ use App\Models\Blog;
 use App\Models\BlogContent;
 use App\Models\Category;
 use App\Models\Tag;
+// use Carbon\Carbon;
+use Illuminate\Support\Carbon;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -33,7 +35,9 @@ class BlogController extends Controller
     // Store new Blog
     public function store(Request $request)
     {
+        // dd($request->all());
         try {
+
             $request->validate([
                 'title' => 'required|string|max:255',
                 'excerpt' => 'nullable|string',
@@ -53,13 +57,14 @@ class BlogController extends Controller
                 ->filter()               // Remove empty values
                 ->unique();              // Remove duplicates
             // dd($request->all(), $tagNames);
+            $published_at = $request->status === 'published' ? Carbon::now()->format('M d, Y') : null;
             $Blog = Blog::create([
                 'title' => $request->title,
-                'slug' => Str::slug($request->title),
+                'slug' => Str::slug(collect(explode(' ', $request->title))->take(5)->implode(' ')),
                 'excerpt' => $request->excerpt,
                 'status' => $request->status,
                 'description' => $request->description,
-                'published_at' => $request->published_at,
+                'published_at' => $published_at,
                 'user_id' => auth()->id(),
                 'tags' => json_encode($tagNames),
                 'category_id' => $request->category_id,

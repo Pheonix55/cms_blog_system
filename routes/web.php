@@ -3,15 +3,14 @@
 use App\Http\Controllers\admin\blogCrudController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\HomePageController;
 use App\Http\Controllers\TagController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Password;
 use App\Http\Controllers\BlogController;
 
 
-Route::get('/', function () {
-    return view('welcome');
-})->name('home');
+Route::get('/', [HomePageController::class, 'index'])->name('home');
 Route::get('login', function () {
     return view('auth');
 })->name('login');
