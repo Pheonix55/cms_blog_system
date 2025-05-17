@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\UserRegistered;
 use App\Models\User;
 use Auth;
+use Error;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
@@ -42,25 +44,30 @@ class AuthController extends Controller
 
     public function register(Request $request)
     {
-        // dd($request->all());
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'username' => 'required|string|max:50|unique:users,username',
-            'email' => 'required|email|unique:users,email',
-            'password' => 'required|string|min:6',
-        ]);
+        try {
+            $request->validate([
+                'name' => 'required|string|max:255',
+                'username' => 'required|string|max:50|unique:users,username',
+                'email' => 'required|email|unique:users,email',
+                'password' => 'required|string|min:6',
+            ]);
 
-        $user = User::create([
-            'name' => $request->name,
-            'username' => $request->username,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-            'type' => 'user',
-        ]);
+            $user = User::create([
+                'name' => $request->name,
+                'username' => $request->username,
+                'email' => $request->email,
+                'password' => Hash::make($request->password),
+                'type' => 'user',
+            ]);
 
-        Auth::login($user);
+            Auth::login($user);
 
-        return redirect('/');
+            event(new UserRegistered($user));
+
+            return redirect('/')->with('success', 'Registration successful.');
+        } catch (\Exception $e) {
+            return back()->with('error', 'Registration failed: ' . $e->getMessage());
+        }
     }
 
     public function logout()

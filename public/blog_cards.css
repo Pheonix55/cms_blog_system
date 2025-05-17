@@ -14,7 +14,11 @@ body {
     background: #7f7fd5;
     background: linear-gradient(to right, #91eae4, #86a8e7, #7f7fd5);
 }
+.tags{
+    display:flex;
+    gap: 2px;
 
+}
 .blog_cards {
     display: grid;
     place-items: center;

@@ -93,6 +93,9 @@
                             </form>
                         </li>
                     @endauth
+                    @guest
+                        <li><a href="{{ route('login') }}">Login</a></li>
+                    @endguest
                 </ul>
                 <label for="menu-btn" class="btn menu-btn"><i class="fas fa-bars"></i></label>
             </div>

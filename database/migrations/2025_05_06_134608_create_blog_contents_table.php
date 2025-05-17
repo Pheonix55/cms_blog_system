@@ -17,11 +17,14 @@ return new class extends Migration {
         Schema::create('blog_contents', function (Blueprint $table) {
             $table->id();
             $table->integer('blog_id');
-            $table->string('type'); // 'text', 'image', 'video', 'code', etc.
-            $table->longText('content'); // For text content or image paths
-            $table->string('image_caption')->nullable();
-            $table->string('image_alt')->nullable();
-            $table->unsignedInteger('order')->default(0);
+            $table->longText('description');
+            $table->string('slug')->unique();
+            $table->string('meta_title')->nullable();
+            $table->text('meta_description')->nullable();
+            $table->string('featured_image')->nullable();
+            $table->boolean('show_author')->default(false);
+            $table->boolean('date_published')->default(false);
+            $table->boolean('date_edited')->default(false);
             $table->timestamps();
         });
     }

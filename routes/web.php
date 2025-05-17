@@ -5,6 +5,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\HomePageController;
 use App\Http\Controllers\TagController;
+use App\Mail\WelcomeEmail;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Password;
 use App\Http\Controllers\BlogController;
@@ -15,6 +16,9 @@ Route::get('login', function () {
     return view('auth');
 })->name('login');
 
+Route::get('admin/blog/create', [blogCrudController::class, 'create'])->name('admin.blog.create');
+Route::get('admin/blog/edit', [blogCrudController::class, 'edit'])->name('admin.blog.edit');
+Route::post('admin/blog/store', [blogCrudController::class, 'store'])->name('admin.blog.store');
 
 Route::get('/blog_detail', [BlogController::class, 'blog_detail'])->name('blog_detail');
 Route::get('/blog/index', [BlogController::class, 'index'])->name('blog.index');
@@ -60,3 +64,8 @@ Route::get('blog/search', [BlogController::class, 'search_blogs'])->name('search
 Route::get('abcdefg/', [blogCrudController::class, 'index'])->name('admin.blog.index')
     // ->middleware('is_admin')
 ;
+Route::get('mail_test', function () {
+    $user = \App\Models\User::first(); // Or use your own data
+    Mail::to('m33322ali@gmail.com')->send(new WelcomeEmail($user));
+    return 'Email Sent';
+});

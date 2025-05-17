@@ -33,9 +33,15 @@
                             width="600">
                     </div>
                     <div class="card__body">
-                        <span class="tag tag-blue">{{ $blog->tags }}</span>
+                        {{-- @dd($blog->tags) --}}
+                        <div class="tags">
+                            @foreach (collect(json_decode($blog->tags))->take(6) as $tag)
+                                <span class="tag tag-blue">#{{ $tag }}</span>
+                            @endforeach
+                        </div>
                         <h4>{{ $blog->title }}</h4>
-                        <p>{{ $blog->description }}</p>
+                        <p>{!! $blog->description !!}</p>
+
                     </div>
                     <div class="card__footer">
                         <div class="user">
