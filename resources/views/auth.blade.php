@@ -69,6 +69,12 @@
 
                 <a href="{{ route('forget_password') }}">forget password?</a>
                 <button type="submit">Login</button>
+                <a href="/auth/google" class="google-login-btn">
+                    <img src="https://developers.google.com/identity/images/g-logo.png" alt="Google logo">
+                    Login with Google
+                </a>
+
+
             </form>
         </div>
 

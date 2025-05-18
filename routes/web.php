@@ -4,17 +4,22 @@ use App\Http\Controllers\admin\blogCrudController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\HomePageController;
+// use App\Http\Controllers\SocialController;
 use App\Http\Controllers\TagController;
 use App\Mail\WelcomeEmail;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Password;
 use App\Http\Controllers\BlogController;
+use App\Http\Controllers\SocialController;
 
+
+Route::get('/auth/{provider}', [SocialController::class, 'redirectToProvider']);
+Route::get('/auth/{provider}/callback', [SocialController::class, 'handleProviderCallback']);
 
 Route::get('/', [HomePageController::class, 'index'])->name('home');
 Route::get('login', function () {
     return view('auth');
-})->name('login');
+})->name('login');    
 
 Route::get('admin/blog/create', [blogCrudController::class, 'create'])->name('admin.blog.create');
 Route::get('admin/blog/edit', [blogCrudController::class, 'edit'])->name('admin.blog.edit');

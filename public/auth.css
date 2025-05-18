@@ -112,3 +112,29 @@ button:hover {
 #chk:checked~.signup label {
 	transform: scale(.6);
 }
+
+.google-login-btn {
+	display: inline-flex;
+	align-items: center;
+	background-color: #ffffff;
+	color: #444;
+	border: 1px solid #ddd;
+	padding: 10px 15px;
+	border-radius: 4px;
+	font-size: 16px;
+	text-decoration: none;
+	transition: background-color 0.3s, box-shadow 0.3s;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+	font-family: Arial, sans-serif;
+}
+
+.google-login-btn img {
+	width: 20px;
+	height: 20px;
+	margin-right: 10px;
+}
+
+.google-login-btn:hover {
+	background-color: #f5f5f5;
+	box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
