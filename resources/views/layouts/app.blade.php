@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>{{ config('app.name') }} - @yield('title')</title>
+    <link rel="stylesheet" href="/partials/loader.css">
 
     <!-- Bootstrap 5 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -137,6 +138,15 @@
             </div>
         @endif
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <!-- Loader Overlay -->
+        <div id="global-loader"
+            style="display: none;
+     position: fixed; top: 0; left: 0;
+     width: 100vw; height: 100vh;
+     background-color: rgba(255, 255, 255, 0.7);
+     z-index: 9999; display: flex; align-items: center; justify-content: center;">
+            <div class="loader"></div>
+        </div>
 
         <!-- Page Content -->
         @yield('content')

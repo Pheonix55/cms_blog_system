@@ -19,7 +19,12 @@ Route::get('/auth/{provider}/callback', [SocialController::class, 'handleProvide
 Route::get('/', [HomePageController::class, 'index'])->name('home');
 Route::get('login', function () {
     return view('auth');
-})->name('login');    
+})->name('login');
+
+// auth
+Route::get('/singin/view', [AuthController::class, 'loginView'])->name('loginView');
+Route::get('/singUp', [AuthController::class, 'registerView'])->name('registerView');
+
 
 Route::get('admin/blog/create', [blogCrudController::class, 'create'])->name('admin.blog.create');
 Route::get('admin/blog/edit', [blogCrudController::class, 'edit'])->name('admin.blog.edit');
@@ -36,7 +41,10 @@ Route::put('/blog/update', [BlogController::class, 'update'])->name('blog.update
 Route::post('/signup', [AuthController::class, 'register'])->name('registerPost');
 Route::post('/singin', [AuthController::class, 'login'])->name('loginPost');
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
-Route::get('/forget_password', [AuthController::class, 'forgetPassword'])->name('forget_password');
+Route::get('/forget_password', [AuthController::class, 'forgetPassword'])->name('forget_password_view');
+Route::post('/send-reset-link', [AuthController::class, 'sendPasswordResetLink'])->name('send_reset_link');
+Route::get('/new-password/{id}', [AuthController::class, 'newPasswordView'])->name('forget_password');
+Route::post('/change_password/{id}', [AuthController::class, 'newPasswordStore'])->name('new_password');
 
 Route::resource('categories', CategoryController::class);
 Route::resource('tags', TagController::class);
@@ -66,7 +74,7 @@ Route::delete('posts/content/{content}', [BlogController::class, 'destroyContent
 Route::get('blog/search', [BlogController::class, 'search_blogs'])->name('search_blogs_title');
 
 
-Route::get('abcdefg/', [blogCrudController::class, 'index'])->name('admin.blog.index')
+Route::get('abcdefg', [blogCrudController::class, 'index'])->name('admin.blog.index')
     // ->middleware('is_admin')
 ;
 Route::get('mail_test', function () {
