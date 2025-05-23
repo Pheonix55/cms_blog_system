@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="/navbar.css">
     <link rel="stylesheet" href="/serachbar.css">
     <link rel="stylesheet" href="/partials/loader.css">
+    <link rel="stylesheet" href="/partials/mega_menu.css">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
         integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
@@ -25,8 +26,10 @@
             padding: 0;
             position: fixed;
             top: 0;
-            background: #FFF;
+            background: #000;
             box-shadow: 6px 1px 6px 1px #fff;
+            position: fixed;
+            z-index: 1000;
 
         }
 
@@ -45,7 +48,7 @@
         }
 
         .navbar_general .navbar_nav .custom_navbar .custom_nav_item a {
-            color: #8293dd;
+            color: #fff;
             position: relative;
         }
 
@@ -57,7 +60,7 @@
             left: 0;
             width: 0%;
             height: 2px;
-            background-color: #26ADE3;
+            background-color: #fff;
             transition: width 0.3s ease-in-out;
         }
 
@@ -79,23 +82,20 @@
 </head>
 
 <body>
-    {{-- <h1>welcome</h1>
-    <h2>{{ Auth::user()->name }}</h2> --}}
+
     <div class="navbar_general">
         <nav class="navbar_nav">
             <ul class="custom_navbar">
                 <li class="custom_nav_item"><a class="cutom_nav_link" href="#">Home</a></li>
-                <li class="custom_nav_item"><a class="cutom_nav_link" href="#">Categories</a></li>
+                <li class="custom_nav_item" id="meqa_menu_trigger"><a class="cutom_nav_link"
+                        href="#">Categories</a>
+
+                </li>
                 <li class="custom_nav_item"><a class="cutom_nav_link" href="#">about us</a></li>
                 @auth
                     <li class="custom_nav_item"><a class="cutom_nav_link" href="#">My blogs</a></li>
-                    <li class="custom_nav_item"><a class="cutom_nav_link" href="#">{{ Auth::user()->name }}</a></li>
-                @endauth
-                @guest
-                    <li class="custom_nav_item"><a class="cutom_nav_link" href="#">Guest</a></li>
-                    <li class="custom_nav_item"><a class="cutom_nav_link" href="{{ route('loginView') }}">SignIn</a></li>
-                @endguest
-                @auth
+                    <li class="custom_nav_item"><a class="cutom_nav_link" href="#">{{ Auth::user()->name }}</a>
+                    </li>
                     <li class="custom_nav_item">
                         <form action="{{ route('logout') }}" method="POST">
                             @csrf
@@ -103,9 +103,129 @@
                         </form>
                     </li>
                 @endauth
+                @guest
+                    <li class="custom_nav_item"><a class="cutom_nav_link" href="#">Guest</a></li>
+                    <li class="custom_nav_item"><a class="cutom_nav_link" href="{{ route('loginView') }}">SignIn</a></li>
+                @endguest
+
             </ul>
         </nav>
     </div>
+    <div class="mega_menu">
+        <div class="top_tabs">
+            <div class="tabs">
+                <div class="tab_item" data-content="tab-content-1">App</div>
+                <div class="tab_item" data-content="tab-content-2">Suites</div>
+                <div class="tab_item" data-content="tab-content-3">coworkit </div>
+                <div class="tab_item" data-content="tab-content-4">Marketplace</div>
+                <div class="explore-link">
+                    <a href="#">Explore all products</a>
+                </div>
+            </div>
+
+            <div class="close_btn">
+                X
+            </div>
+        </div>
+        <hr>
+        <div class="bottom_section">
+            <div class="tab_content" id="tab-content-1">
+                <div class="left_side_menu">
+                    <ul class="side_menu_tabs">
+                        <li class="side_menu_item" data-content="subtab_content-1">Sales</li>
+                        <li class="side_menu_item" data-content="subtab_content-2">Marketing
+                        </li>
+                        <li class="side_menu_item" data-content="subtab_content-3">Commercial
+                        </li>
+                        <li class="side_menu_item" data-content="subtab_content-4">POS</li>
+                    </ul>
+                </div>
+                <div class="right_side_tab_menu_content">
+                    <div class="sub_tabs_content" id="subtab_content-1">
+                        <h1>Sales</h1>
+                        <div class="subtab_container">
+                            <a href="/product/product1.html">
+                                <div class="subtab_item">
+                                    <div class="subtab_item_upper">
+                                        <img src="img/crm.gif" alt=""><span>CRM</span>
+                                    </div>
+                                    <div class="subtab_item_para">
+                                        Comprehensive CRM systeme
+                                    </div>
+
+                                </div>
+                            </a>
+                            <div class="subtab_item">
+                                <div class="subtab_item_upper">
+                                    <img src="img/icon1.png" alt=""><span>CRM</span>
+                                </div>
+                                <div class="subtab_item_para">
+                                    Comprehensive CRM systeme
+                                </div>
+
+                            </div>
+                            <div class="subtab_item">
+                                <div class="subtab_item_upper">
+                                    <img src="img/icon1.png" alt=""><span>CRM</span>
+                                </div>
+                                <div class="subtab_item_para">
+                                    Comprehensive CRM systeme
+                                </div>
+
+                            </div>
+                            <div class="subtab_item">
+                                <div class="subtab_item_upper">
+                                    <img src="img/icon1.png" alt=""><span>CRM</span>
+                                </div>
+                                <div class="subtab_item_para">
+                                    Comprehensive CRM systeme
+                                </div>
+
+                            </div>
+                            <div class="subtab_item">
+                                <div class="subtab_item_upper">
+                                    <img src="img/icon1.png" alt=""><span>CRM</span>
+                                </div>
+                                <div class="subtab_item_para">
+                                    Comprehensive CRM systeme
+                                </div>
+
+                            </div>
+                            <div class="subtab_item">
+                                <div class="subtab_item_upper">
+                                    <img src="img/icon1.png" alt=""><span>CRM</span>
+                                </div>
+                                <div class="subtab_item_para">
+                                    Comprehensive CRM systeme
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="sub_tabs_content" id="subtab_content-2">
+                        <h1>Marketing</h1>
+                    </div>
+                    <div class="sub_tabs_content" id="subtab_content-3">
+                        <h1>commercial</h1>
+                    </div>
+                    <div class="sub_tabs_content" id="subtab_content-4">
+                        <h1>POS</h1>
+                    </div>
+
+                </div>
+            </div>
+            <div class="tab_content" id="tab-content-2">
+                <h1>Tab content-2</h1>
+            </div>
+            <div class="tab_content" id="tab-content-3">
+                <h1>Tab content-3</h1>
+            </div>
+            <div class="tab_content" id="tab-content-4">
+                <h1>Tab content-4</h1>
+            </div>
+        </div>
+    </div>
+
     <!-- Loader Overlay -->
     <div id="global-loader"
         style="display: none;
@@ -132,7 +252,7 @@ z-index: 9999; display: flex; align-items: center; justify-content: center;">
             });
         });
     </script>
-    <script>
+    {{-- <script>
         document.addEventListener('DOMContentLoaded', function() {
             const maxLength = 200;
 
@@ -166,8 +286,10 @@ z-index: 9999; display: flex; align-items: center; justify-content: center;">
                 });
             });
         });
-    </script>
+    </script> --}}
 
+
+    <script src="/partials/mega_menu.js"></script>
 </body>
 
 </html>
